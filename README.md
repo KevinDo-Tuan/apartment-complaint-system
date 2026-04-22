@@ -26,7 +26,7 @@ The **Apartment Complaint System** is a full-stack decentralized application (dA
 
 ## Features
 
-### 🏠 Host Features
+###  Host Features
 - Register as a host with a display name
 - Create and manage multiple apartment properties (name + address)
 - View a dedicated **Host Dashboard** with per-apartment complaint views
@@ -37,7 +37,7 @@ The **Apartment Complaint System** is a full-stack decentralized application (dA
 - View real-time complaint statistics per apartment (total, open, in-progress, resolved)
 - Click stat cards to instantly filter complaints by that status
 
-### 👤 Tenant Features
+###  Tenant Features
 - Register as a tenant and select which apartment you live in
 - Submit complaints with:
   - Title and detailed description
@@ -51,7 +51,7 @@ The **Apartment Complaint System** is a full-stack decentralized application (dA
 - Delete your own unresolved complaints
 - View your full complaint history in your **Profile Page** with statistics
 
-### ⚙️ General Features
+### General Features
 - **Internet Identity authentication** — secure, privacy-preserving login
 - **Read-only public access** — visitors can browse all complaints without signing in
 - **Registration modal** — first-time users are prompted to choose a role (Host or Tenant)
