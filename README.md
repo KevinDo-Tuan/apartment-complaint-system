@@ -2,6 +2,9 @@
 
 > A decentralized apartment complaint management platform built on the **Internet Computer** blockchain. Tenants submit complaints, hosts track and resolve them — all with full transparency and immutability.
 
+<img width="1962" height="1267" alt="image" src="https://github.com/user-attachments/assets/0a8248ec-1a5b-4349-85cd-2c2e393738de" />
+
+
 ---
 
 ## Overview
