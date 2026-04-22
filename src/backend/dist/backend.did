@@ -1,0 +1,106 @@
+type UserRole = 
+ variant {
+   Host;
+   Tenant;
+ };
+type UserProfile = 
+ record {
+   apartmentId: opt nat;
+   createdAt: Timestamp;
+   name: text;
+   "principal": principal;
+   role: UserRole;
+ };
+type Timestamp = int;
+type ComplaintStatus = 
+ variant {
+   InProgress;
+   Open;
+   Resolved;
+ };
+type ComplaintPriority = 
+ variant {
+   High;
+   Low;
+   Medium;
+ };
+type ComplaintCategory = 
+ variant {
+   Cleanliness;
+   Maintenance;
+   Noise;
+   Other;
+   Safety;
+ };
+type Complaint = 
+ record {
+   apartmentId: nat;
+   category: ComplaintCategory;
+   createdAt: Timestamp;
+   description: text;
+   id: nat;
+   priority: ComplaintPriority;
+   resolutionNotes: opt text;
+   resolvedAt: opt Timestamp;
+   status: ComplaintStatus;
+   tenantPrincipal: principal;
+   title: text;
+   updatedAt: Timestamp;
+ };
+type Apartment = 
+ record {
+   address: text;
+   createdAt: Timestamp;
+   hostPrincipal: principal;
+   id: nat;
+   name: text;
+ };
+service : {
+  createApartment: (name: text, address: text) ->
+   (variant {
+      err: text;
+      ok: nat;
+    });
+  deleteComplaint: (id: nat) -> (variant {
+                                   err: text;
+                                   ok;
+                                 });
+  getAllComplaints: () -> (vec Complaint) query;
+  getApartmentComplaints: (apartmentId: nat) -> (vec Complaint) query;
+  getApartments: () -> (vec Apartment) query;
+  getComplaint: (id: nat) -> (opt Complaint) query;
+  getComplaintStats: (apartmentId: nat) ->
+   (record {
+      inProgress: nat;
+      open: nat;
+      resolved: nat;
+      total: nat;
+    }) query;
+  getComplaintsByCategory: (category: ComplaintCategory) ->
+   (vec Complaint) query;
+  getComplaintsByStatus: (status: ComplaintStatus) -> (vec Complaint) query;
+  getMyApartments: () -> (vec Apartment) query;
+  getMyComplaints: () -> (vec Complaint) query;
+  getUserProfile: () -> (opt UserProfile) query;
+  isRegistered: () -> (bool) query;
+  postComplaint: (apartmentId: nat, title: text, description: text, category:
+   ComplaintCategory, priority: ComplaintPriority) ->
+   (variant {
+      err: text;
+      ok: nat;
+    });
+  registerAsHost: (name: text) -> (variant {
+                                     err: text;
+                                     ok;
+                                   });
+  registerAsTenant: (name: text, apartmentId: nat) ->
+   (variant {
+      err: text;
+      ok;
+    });
+  updateComplaintStatus: (id: nat, status: ComplaintStatus, resolutionNotes:
+   opt text) -> (variant {
+                   err: text;
+                   ok;
+                 });
+}

@@ -1,0 +1,22 @@
+{
+  "overview": "A comprehensive apartment complaint management system where tenants post complaints with categories and priority levels, and apartment hosts track and resolve them through a dedicated dashboard.",
+  "features": [
+    "Post complaints with category, priority, and description",
+    "Host dashboard with complaint filtering and resolution notes",
+    "Status workflow: open → in-progress → resolved",
+    "Role-based access: tenants post, hosts resolve",
+    "Tenant complaint history and status tracking",
+    "User profiles for hosts and tenants",
+    "Comprehensive README with setup and deployment guide"
+  ],
+  "category": "productivity",
+  "tags": [
+    "apartment",
+    "complaints",
+    "property-management",
+    "tenant",
+    "host",
+    "dashboard"
+  ],
+  "last_updated": "2026-04-22T06:50:33.993Z"
+}

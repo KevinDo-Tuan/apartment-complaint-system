@@ -1,0 +1,126 @@
+// Version: 3.0.0
+type Apartment__610043658 =
+  {
+    address : Text;
+    createdAt : Timestamp__301639476;
+    hostPrincipal : Principal;
+    id : Nat;
+    name : Text
+  };
+type ComplaintCategory__570933903 =
+  {#Cleanliness; #Maintenance; #Noise; #Other; #Safety};
+type ComplaintPriority__767544290 = {#High; #Low; #Medium};
+type ComplaintStatus__348956114 = {#InProgress; #Open; #Resolved};
+type Complaint__445010592 =
+  {
+    apartmentId : Nat;
+    category : ComplaintCategory__570933903;
+    createdAt : Timestamp__301639476;
+    description : Text;
+    id : Nat;
+    priority : ComplaintPriority__767544290;
+    resolutionNotes : ?Text;
+    resolvedAt : ?Timestamp__301639476;
+    status : ComplaintStatus__348956114;
+    tenantPrincipal : Principal;
+    title : Text;
+    updatedAt : Timestamp__301639476
+  };
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Int__270357528 = Int__616954475;
+type Int__616954475 = Int;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__334413012<K, V> = {root : Tree__4145630<K, V>; size : Nat};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type OldComment__646683993 =
+  {
+    author : Principal;
+    authorName : ?Text;
+    authorProfilePicture : ?Blob;
+    content : Text;
+    id : Nat;
+    isLikedByCurrentUser : Bool;
+    likedBy : [Principal];
+    postId : Nat;
+    timestamp : Time__38388344
+  };
+type OldPost__784581407 =
+  {
+    author : Principal;
+    authorName : ?Text;
+    authorProfilePicture : ?Blob;
+    content : Text;
+    id : Nat;
+    isLikedByCurrentUser : Bool;
+    likedBy : [Principal];
+    timestamp : Time__38388344
+  };
+type OldUserProfile__416069324 =
+  {
+    bio : ?Text;
+    createdAt : Time__38388344;
+    displayName : Text;
+    followersCount : Nat;
+    followingCount : Nat;
+    isFollowedByCurrentUser : Bool;
+    name : ?Text;
+    postsCount : Nat;
+    updatedAt : Time__38388344;
+    username : Text
+  };
+type OldUserRelationship__361153298 =
+  {follower : Principal; following : Principal; timestamp : Time__38388344};
+type Time__38388344 = Int;
+type Time__796480547 = Int__270357528;
+type Time__900049286 = Time__796480547;
+type Timestamp__301639476 = Time__900049286;
+type Tree__4145630<K, V> =
+  {
+    #black : (Tree__4145630<K, V>, K, V, Tree__4145630<K, V>);
+    #leaf;
+    #red : (Tree__4145630<K, V>, K, V, Tree__4145630<K, V>)
+  };
+type UserProfile__726089661 =
+  {
+    apartmentId : ?Nat;
+    createdAt : Timestamp__301639476;
+    name : Text;
+    principal : Principal;
+    role : UserRole__451090586
+  };
+type UserRole__451090586 = {#Host; #Tenant};
+actor ({
+  in var comments : Map__334413012<Nat, OldComment__646683993>;
+  in var nextCommentId : Nat;
+  in var nextPostId : Nat;
+  in var posts : Map__334413012<Nat, OldPost__784581407>;
+  in var profilePictures : [(Principal, Blob)];
+  in var relationships : Map__334413012<Text, OldUserRelationship__361153298>;
+  in var reservedUsernames : [Text];
+  in var userProfiles : Map__334413012<Principal, OldUserProfile__416069324>;
+  in var usersByUsername : Map__334413012<Text, Principal>
+}, {
+  stable apartments :
+    {
+      var root : Node__46230540<Nat, Apartment__610043658>;
+      var size : Nat__490723111
+    };
+  stable complaints :
+    {
+      var root : Node__46230540<Nat, Complaint__445010592>;
+      var size : Nat__490723111
+    };
+  stable var nextApartmentId : Nat;
+  stable var nextComplaintId : Nat;
+  stable profiles :
+    {
+      var root : Node__46230540<Principal, UserProfile__726089661>;
+      var size : Nat__490723111
+    }
+}) ;
