@@ -1,4 +1,4 @@
-# 🏢 Apartment Complaint System
+#  Apartment Complaint System
 
 > A decentralized apartment complaint management platform built on the **Internet Computer** blockchain. Tenants submit complaints, hosts track and resolve them — all with full transparency and immutability.
 
